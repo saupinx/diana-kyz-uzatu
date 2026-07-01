@@ -1,15 +1,27 @@
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
 export function withBasePath(path: string): string {
-  const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+  if (!path) return path;
 
   if (
-    !basePath ||
-    !path.startsWith("/") ||
-    path.startsWith(`${basePath}/`) ||
-    path === basePath ||
-    path.startsWith("//")
+    path.startsWith("http://") ||
+    path.startsWith("https://") ||
+    path.startsWith("data:") ||
+    path.startsWith("blob:") ||
+    path.startsWith("#")
   ) {
     return path;
   }
 
-  return `${basePath}${path}`;
+  const normalizedPath = path.startsWith("/") ? path : `/${path}`;
+
+  if (!basePath) {
+    return normalizedPath;
+  }
+
+  if (normalizedPath.startsWith(`${basePath}/`)) {
+    return normalizedPath;
+  }
+
+  return `${basePath}${normalizedPath}`;
 }

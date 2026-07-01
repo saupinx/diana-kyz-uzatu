@@ -32,6 +32,14 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          GITHUB_ACTIONS: "true"
+          NEXT_PUBLIC_BASE_PATH: "/diana-kyz-uzatu"
+
+      - name: Ensure public assets are in static export
+        run: |
+          mkdir -p out/assets
+          cp -R public/assets/. out/assets/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -48,3 +56,4 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
