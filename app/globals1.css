@@ -1,0 +1,1120 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #000000;
+  --premium-border: #d4d4d4;
+  --premium-border-soft: #e5e5e5;
+  --premium-muted: #737373;
+  --premium-card-shadow: 0 18px 45px rgba(0, 0, 0, 0.07), 0 1px 0 rgba(255, 255, 255, 0.95) inset;
+  --premium-card-shadow-hover: 0 28px 70px rgba(0, 0, 0, 0.13), 0 1px 0 rgba(255, 255, 255, 0.98) inset;
+  --wedding-soft: #FEF0FF;
+  --wedding-rose: #D97F8B;
+  --wedding-blush: #FFC2BE;
+  --wedding-sage: #ADB680;
+  --wedding-neutral: #E0CFC3;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: Arial, Helvetica, sans-serif;
+  --font-serif: var(--font-invite-serif), Georgia, "Times New Roman", serif;
+  --font-calligraphy: var(--font-sloop-script), var(--font-invite-script), "Snell Roundhand", "Brush Script MT", "Segoe Script", cursive;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: #ffffff;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(0, 0, 0, 0.035), transparent 34rem),
+    linear-gradient(180deg, #ffffff 0%, #f8f8f8 45%, #ffffff 100%);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  content: "";
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.014) 1px, transparent 1px),
+    radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.72), transparent 18rem);
+  background-size: 18px 18px, 18px 18px, 100% 100%;
+  opacity: 0.58;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.invite-shell {
+  position: relative;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(250, 250, 250, 0.78) 38%, rgba(255, 255, 255, 0.98) 100%),
+    radial-gradient(circle at 50% 0%, rgba(0, 0, 0, 0.045), transparent 26rem),
+    #ffffff;
+}
+
+.invite-shell::before,
+.invite-shell::after {
+  position: absolute;
+  inset-inline: 0;
+  z-index: 0;
+  height: 220px;
+  pointer-events: none;
+  content: "";
+}
+
+.invite-shell::before {
+  top: 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.72), transparent);
+}
+
+.invite-shell::after {
+  bottom: 0;
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0.9), transparent);
+}
+
+.invite-shell > section,
+.invite-shell > div {
+  position: relative;
+  z-index: 1;
+}
+
+.reveal-section {
+  animation: premium-fade-up 720ms ease both;
+  animation-delay: var(--reveal-delay, 0ms);
+}
+
+@keyframes premium-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.premium-card {
+  position: relative;
+  border: 1px solid var(--premium-border-soft);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(250, 250, 250, 0.9)),
+    #ffffff;
+  box-shadow: var(--premium-card-shadow);
+  transition: transform 260ms ease, box-shadow 260ms ease, border-color 260ms ease;
+}
+
+.premium-card::before {
+  position: absolute;
+  inset: 1px;
+  pointer-events: none;
+  content: "";
+  border-radius: inherit;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.96), inset 0 -1px 0 rgba(0, 0, 0, 0.035);
+}
+
+.premium-button,
+.premium-outline-button {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  transform: translateZ(0);
+  transition: transform 180ms ease, box-shadow 240ms ease, border-color 240ms ease, background-color 240ms ease;
+}
+
+.premium-button {
+  background: #000000;
+  color: #ffffff;
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.18);
+}
+
+.premium-button::before {
+  position: absolute;
+  inset: -40% auto -40% -65%;
+  z-index: -1;
+  width: 48%;
+  content: "";
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.32), transparent);
+  transform: skewX(-18deg);
+  transition: left 620ms ease;
+}
+
+.premium-outline-button {
+  border-color: var(--premium-border);
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.04);
+}
+
+.premium-button:active,
+.premium-outline-button:active,
+.music-button:active,
+.language-pill:active {
+  transform: translateY(1px) scale(0.985);
+}
+
+.premium-divider svg {
+  opacity: 0.78;
+  filter: drop-shadow(0 7px 12px rgba(0, 0, 0, 0.08));
+}
+
+.hero-media {
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.12), inset 0 -1px 0 rgba(255, 255, 255, 0.92);
+}
+
+.hero-media::after {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+  background:
+    radial-gradient(circle at 50% 26%, transparent 0%, transparent 42%, rgba(0, 0, 0, 0.18) 100%),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0.2) 44%, rgba(255, 255, 255, 0.98) 88%, #ffffff 100%);
+}
+
+.language-switcher {
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+.language-pill {
+  transition: transform 180ms ease, background-color 220ms ease, color 220ms ease, box-shadow 220ms ease;
+}
+
+.music-button {
+  position: relative;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.2);
+  transition: transform 220ms ease, box-shadow 260ms ease, background-color 220ms ease;
+}
+
+.music-button::after {
+  position: absolute;
+  inset: -7px;
+  z-index: -1;
+  content: "";
+  border: 1px solid rgba(0, 0, 0, 0.18);
+  border-radius: 999px;
+  opacity: 0.72;
+  animation: music-ring 2200ms ease-out infinite;
+}
+
+@keyframes music-ring {
+  0%, 100% {
+    transform: scale(0.94);
+    opacity: 0.56;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 0.18;
+  }
+}
+
+.countdown-box {
+  transition: transform 240ms ease, box-shadow 240ms ease, border-color 240ms ease;
+}
+
+.calendar-day {
+  transition: transform 180ms ease, box-shadow 220ms ease, background-color 220ms ease;
+}
+
+.program-row {
+  border-radius: 18px;
+  transition: transform 220ms ease, background-color 220ms ease;
+}
+
+.gallery-card {
+  transition: transform 280ms ease, box-shadow 280ms ease, border-color 280ms ease;
+}
+
+.gallery-card img,
+.gallery-card .placeholder-surface {
+  transition: transform 700ms ease, opacity 700ms ease;
+}
+
+.placeholder-surface {
+  background:
+    radial-gradient(circle at 50% 36%, rgba(255, 255, 255, 0.82), transparent 8rem),
+    linear-gradient(135deg, #ffffff 0%, #f4f4f4 44%, #d9d9d9 100%);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .premium-card:hover,
+  .countdown-box:hover,
+  .gallery-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--premium-border);
+    box-shadow: var(--premium-card-shadow-hover);
+  }
+
+  .premium-button:hover {
+    background: #111111;
+    box-shadow: 0 22px 48px rgba(0, 0, 0, 0.24);
+    transform: translateY(-2px);
+  }
+
+  .premium-button:hover::before {
+    left: 118%;
+  }
+
+  .premium-outline-button:hover {
+    border-color: #000000;
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+  }
+
+  .language-pill:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+  }
+
+  .music-button:hover {
+    background: #111111;
+    box-shadow: 0 22px 52px rgba(0, 0, 0, 0.28), 0 0 0 7px rgba(0, 0, 0, 0.045);
+    transform: scale(1.045);
+  }
+
+  .calendar-day:hover {
+    transform: scale(1.08);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+  }
+
+  .program-row:hover {
+    background: rgba(0, 0, 0, 0.025);
+    transform: translateX(2px);
+  }
+
+  .gallery-card:hover img,
+  .gallery-card:hover .placeholder-surface {
+    transform: scale(1.035);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 1ms !important;
+  }
+
+  .reveal-section {
+    animation: none;
+  }
+}
+
+
+/* Typography and monochrome sparkle refinement */
+.font-calligraphy {
+  font-synthesis: none;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.font-serif {
+  font-weight: 500;
+}
+
+.premium-card::after {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 8px;
+  height: 8px;
+  pointer-events: none;
+  content: "";
+  background: rgba(0, 0, 0, 0.28);
+  clip-path: polygon(50% 0%, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0% 50%, 39% 39%);
+  opacity: 0.22;
+}
+
+.sparkles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  color: #000000;
+}
+
+.sparkle {
+  position: absolute;
+  display: block;
+  width: var(--sparkle-size, 8px);
+  height: var(--sparkle-size, 8px);
+  background: currentColor;
+  clip-path: polygon(50% 0%, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0% 50%, 39% 39%);
+  opacity: 0.22;
+  animation: sparkle-shimmer 5200ms ease-in-out infinite;
+  animation-delay: var(--sparkle-delay, 0ms);
+  transform: translate3d(0, 0, 0) scale(var(--sparkle-scale, 1));
+}
+
+.sparkle-1 {
+  --sparkle-size: 9px;
+  --sparkle-delay: 0ms;
+}
+
+.sparkle-2 {
+  --sparkle-size: 5px;
+  --sparkle-delay: 900ms;
+}
+
+.sparkle-3 {
+  --sparkle-size: 7px;
+  --sparkle-delay: 1700ms;
+}
+
+.sparkle-4 {
+  --sparkle-size: 4px;
+  --sparkle-delay: 2600ms;
+}
+
+.sparkle-5 {
+  --sparkle-size: 6px;
+  --sparkle-delay: 3400ms;
+}
+
+.sparkles-hero .sparkle-1 {
+  left: -18px;
+  top: 12px;
+  opacity: 0.2;
+}
+
+.sparkles-hero .sparkle-2 {
+  right: -12px;
+  top: 24px;
+  opacity: 0.28;
+}
+
+.sparkles-hero .sparkle-3 {
+  left: 12px;
+  bottom: 10px;
+  opacity: 0.17;
+}
+
+.sparkles-hero .sparkle-4 {
+  right: 22px;
+  bottom: 4px;
+  opacity: 0.18;
+}
+
+.sparkles-hero .sparkle-5 {
+  right: 46%;
+  top: -14px;
+  opacity: 0.14;
+}
+
+.sparkles-divider .sparkle-1 {
+  left: 28px;
+  top: 12px;
+  opacity: 0.16;
+}
+
+.sparkles-divider .sparkle-2 {
+  right: 30px;
+  top: 12px;
+  opacity: 0.2;
+}
+
+.sparkles-divider .sparkle-3 {
+  left: 50%;
+  top: 4px;
+  opacity: 0.12;
+}
+
+.sparkles-divider .sparkle-4,
+.sparkles-divider .sparkle-5 {
+  display: none;
+}
+
+.sparkles-final .sparkle-1 {
+  left: 6px;
+  top: 4px;
+  opacity: 0.18;
+}
+
+.sparkles-final .sparkle-2 {
+  right: 8px;
+  top: 12px;
+  opacity: 0.22;
+}
+
+.sparkles-final .sparkle-3 {
+  right: 30px;
+  bottom: 2px;
+  opacity: 0.16;
+}
+
+.sparkles-final .sparkle-4 {
+  left: 32px;
+  bottom: 10px;
+  opacity: 0.14;
+}
+
+.sparkles-final .sparkle-5 {
+  left: 52%;
+  top: -8px;
+  opacity: 0.12;
+}
+
+
+.sparkles-divider .sparkle,
+.sparkles-final .sparkle {
+  opacity: 0.1;
+}
+@keyframes sparkle-shimmer {
+  0%, 100% {
+    opacity: 0.1;
+    transform: translateY(0) scale(0.82) rotate(0deg);
+  }
+  45% {
+    opacity: 0.22;
+    transform: translateY(-3px) scale(1.04) rotate(10deg);
+  }
+  70% {
+    opacity: 0.12;
+    transform: translateY(1px) scale(0.92) rotate(-6deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sparkle,
+  .music-button::after,
+  .reveal-section {
+    animation: none !important;
+  }
+}
+
+
+/* Local monochrome floral accents */
+.floral-decor {
+  display: block;
+  pointer-events: none;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.floral-hero-accent {
+  position: absolute;
+  right: -86px;
+  top: 426px;
+  z-index: 1;
+  width: 270px;
+  height: 246px;
+  opacity: 0.17;
+  transform: rotate(-8deg);
+}
+
+.floral-divider-image {
+  position: relative;
+  z-index: 1;
+  width: 252px;
+  height: 66px;
+  opacity: 0.54;
+}
+
+.floral-card-corner {
+  position: absolute;
+  z-index: 0;
+  width: 178px;
+  height: 178px;
+  opacity: 0.12;
+}
+
+.floral-card-corner-top {
+  top: -52px;
+  right: -46px;
+  transform: rotate(2deg);
+}
+
+.floral-card-corner-bottom {
+  right: -54px;
+  bottom: -62px;
+  transform: rotate(180deg);
+}
+
+.floral-card-corner-side {
+  left: -70px;
+  bottom: -66px;
+  width: 214px;
+  height: 214px;
+  opacity: 0.15;
+  transform: rotate(92deg);
+}
+
+.floral-final-composition {
+  position: absolute;
+  left: 50%;
+  bottom: -82px;
+  z-index: 0;
+  width: 438px;
+  height: 318px;
+  opacity: 0.18;
+  transform: translateX(-50%);
+}
+
+.floral-final-corner {
+  position: absolute;
+  right: -62px;
+  top: 4px;
+  z-index: 0;
+  width: 218px;
+  height: 218px;
+  opacity: 0.12;
+  transform: rotate(-18deg);
+}
+
+@media (max-width: 380px) {
+  .floral-hero-accent {
+    right: -104px;
+    width: 238px;
+    height: 218px;
+    opacity: 0.15;
+  }
+
+  .floral-card-corner {
+    width: 154px;
+    height: 154px;
+  }
+
+  .floral-card-corner-side {
+    width: 190px;
+    height: 190px;
+    opacity: 0.14;
+  }
+
+  .floral-final-composition {
+    width: 370px;
+    height: 270px;
+  }
+}
+/* Added floral artwork distribution */
+.floral-decor-peony,
+.floral-decor-bouquet,
+.floral-decor-vertical,
+.floral-decor-garland,
+.floral-decor-softBouquet,
+.floral-decor-roseCluster,
+.floral-decor-sideBorder {
+}
+
+.floral-invitation-peony {
+  position: absolute;
+  right: -72px;
+  top: 22px;
+  z-index: 0;
+  width: 210px;
+  height: 210px;
+  opacity: 0.16;
+  transform: rotate(-10deg);
+}
+
+.floral-countdown-garland {
+  position: absolute;
+  left: 50%;
+  top: 46px;
+  z-index: 0;
+  width: 360px;
+  height: 118px;
+  opacity: 0.14;
+  transform: translateX(-50%);
+}
+
+.floral-calendar-border {
+  position: absolute;
+  left: -74px;
+  top: 46px;
+  z-index: 0;
+  width: 132px;
+  height: 360px;
+  opacity: 0.18;
+}
+
+.floral-wishes-vertical {
+  position: absolute;
+  right: -86px;
+  top: 22px;
+  z-index: 0;
+  width: 178px;
+  height: 440px;
+  opacity: 0.12;
+  transform: rotate(2deg);
+}
+
+.floral-details-cluster {
+  width: 202px;
+  height: 202px;
+  opacity: 0.13;
+}
+
+.floral-rsvp-bouquet {
+  right: -72px;
+  bottom: -78px;
+  width: 230px;
+  height: 230px;
+  opacity: 0.13;
+}
+
+.floral-final-bouquet {
+  bottom: -94px;
+  width: 456px;
+  height: 344px;
+  opacity: 0.2;
+}
+
+.hero-media {
+  border-radius: 0 0 42px 42px;
+  outline: 1px solid rgba(255, 255, 255, 0.72);
+  outline-offset: -8px;
+}
+
+.hero-media::before {
+  position: absolute;
+  inset: 10px;
+  z-index: 2;
+  pointer-events: none;
+  content: "";
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 0 0 32px 32px;
+  box-shadow: inset 0 -28px 64px rgba(255, 255, 255, 0.36), inset 0 0 52px rgba(0, 0, 0, 0.12);
+}
+
+@media (max-width: 380px) {
+  .floral-invitation-peony {
+    right: -88px;
+    width: 190px;
+    height: 190px;
+    opacity: 0.14;
+  }
+
+  .floral-countdown-garland {
+    width: 320px;
+    height: 104px;
+    opacity: 0.13;
+  }
+
+  .floral-calendar-border {
+    left: -88px;
+    width: 124px;
+  }
+
+  .floral-wishes-vertical {
+    right: -102px;
+    width: 156px;
+    opacity: 0.1;
+  }
+
+  .floral-rsvp-bouquet {
+    width: 204px;
+    height: 204px;
+  }
+
+  .floral-final-bouquet {
+    width: 392px;
+    height: 296px;
+  }
+}
+/* Gummy Pink floral color refinement */
+body {
+  background:
+    radial-gradient(circle at 18% 8%, rgba(254, 240, 255, 0.72), transparent 22rem),
+    radial-gradient(circle at 88% 34%, rgba(255, 194, 190, 0.16), transparent 18rem),
+    linear-gradient(180deg, #ffffff 0%, #fbf8f9 45%, #ffffff 100%);
+}
+
+.invite-shell {
+  background:
+    radial-gradient(circle at 86% 8%, rgba(254, 240, 255, 0.72), transparent 18rem),
+    radial-gradient(circle at 4% 44%, rgba(224, 207, 195, 0.22), transparent 15rem),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 251, 253, 0.86) 42%, rgba(255, 255, 255, 0.98) 100%),
+    #ffffff;
+}
+
+.premium-card {
+  border-color: rgba(224, 207, 195, 0.72);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(254, 240, 255, 0.18)),
+    #ffffff;
+}
+
+.premium-outline-button {
+  border-color: rgba(217, 127, 139, 0.28);
+}
+
+.sparkles {
+  color: var(--wedding-rose);
+}
+
+.sparkle {
+  opacity: 0.16;
+}
+
+.floral-decor,
+.floral-decor-peony,
+.floral-decor-bouquet,
+.floral-decor-vertical,
+.floral-decor-garland,
+.floral-decor-softBouquet,
+.floral-decor-roseCluster,
+.floral-decor-sideBorder {
+  filter: none;
+  mix-blend-mode: normal;
+}
+
+.floral-divider-image {
+  opacity: 0.66;
+}
+
+.floral-hero-accent {
+  opacity: 0.24;
+}
+
+.floral-hero-transition {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 190px;
+  height: 300px;
+  margin: -92px auto -136px 22px;
+  opacity: 0.42;
+  transform: rotate(-6deg);
+}
+
+.floral-side-rail {
+  position: absolute;
+  top: 620px;
+  right: -76px;
+  bottom: 420px;
+  z-index: 0;
+  width: 190px;
+  pointer-events: none;
+}
+
+.floral-side-rail-piece {
+  position: absolute;
+  right: 0;
+  width: 190px;
+  height: 230px;
+  opacity: 0.32;
+}
+
+.floral-side-rail-piece-1 {
+  top: 0;
+  transform: rotate(-8deg);
+}
+
+.floral-side-rail-piece-2 {
+  top: 36%;
+  opacity: 0.28;
+  transform: rotate(8deg) scaleX(-1);
+}
+
+.floral-side-rail-piece-3 {
+  bottom: 0;
+  opacity: 0.34;
+  transform: rotate(-6deg);
+}
+
+.floral-invitation-peony {
+  right: -86px;
+  top: 8px;
+  width: 248px;
+  height: 248px;
+  opacity: 0.32;
+}
+
+.floral-details-cluster {
+  width: 242px;
+  height: 242px;
+  opacity: 0.22;
+}
+
+.floral-countdown-garland {
+  top: 34px;
+  width: 398px;
+  height: 144px;
+  opacity: 0.24;
+}
+
+.floral-calendar-border {
+  left: -76px;
+  width: 154px;
+  height: 390px;
+  opacity: 0.31;
+}
+
+.floral-rsvp-bouquet {
+  right: -86px;
+  bottom: -92px;
+  width: 268px;
+  height: 268px;
+  opacity: 0.24;
+}
+
+.floral-children-peony {
+  left: -84px;
+  bottom: -78px;
+  width: 238px;
+  height: 238px;
+  opacity: 0.24;
+}
+
+.floral-wishes-vertical {
+  right: -82px;
+  top: -8px;
+  width: 206px;
+  height: 520px;
+  opacity: 0.2;
+}
+
+.floral-final-bouquet {
+  bottom: -112px;
+  width: 520px;
+  height: 390px;
+  opacity: 0.34;
+}
+
+.floral-final-corner {
+  width: 244px;
+  height: 244px;
+  opacity: 0.18;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .premium-card:hover {
+    border-color: rgba(217, 127, 139, 0.34);
+  }
+
+  .premium-outline-button:hover {
+    border-color: rgba(217, 127, 139, 0.72);
+  }
+}
+
+@media (max-width: 380px) {
+  .floral-hero-transition {
+    width: 168px;
+    height: 266px;
+    margin: -86px auto -128px 10px;
+    opacity: 0.36;
+  }
+
+  .floral-side-rail {
+    right: -96px;
+    width: 170px;
+  }
+
+  .floral-side-rail-piece {
+    width: 170px;
+    height: 208px;
+    opacity: 0.26;
+  }
+
+  .floral-invitation-peony {
+    right: -104px;
+    width: 222px;
+    height: 222px;
+  }
+
+  .floral-countdown-garland {
+    width: 342px;
+    height: 126px;
+    opacity: 0.2;
+  }
+
+  .floral-calendar-border {
+    left: -94px;
+    width: 142px;
+  }
+
+  .floral-rsvp-bouquet,
+  .floral-children-peony {
+    width: 226px;
+    height: 226px;
+  }
+
+  .floral-wishes-vertical {
+    right: -108px;
+    width: 178px;
+    opacity: 0.16;
+  }
+
+  .floral-final-bouquet {
+    width: 432px;
+    height: 330px;
+    opacity: 0.3;
+  }
+}
+/* Floral placement corrections */
+.floral-hero-transition {
+  position: relative;
+  z-index: 2;
+  width: min(430px, calc(100% - 18px));
+  height: 154px;
+  margin: -54px auto -42px;
+  opacity: 0.48;
+  transform: none;
+  background-size: contain;
+  background-position: center;
+}
+
+.floral-details-border {
+  position: absolute;
+  top: 10px;
+  right: -18px;
+  bottom: 10px;
+  z-index: 0;
+  width: 156px;
+  opacity: 0.32;
+  background-size: cover;
+  background-position: center right;
+}
+
+.floral-countdown-garland {
+  left: 50%;
+  top: 74px;
+  width: 430px;
+  height: 250px;
+  opacity: 0.27;
+  transform: translateX(-50%) rotate(-2deg);
+  background-size: contain;
+  background-position: center;
+}
+
+.countdown-box {
+  position: relative;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(1.5px);
+}
+
+.floral-side-rail {
+  top: 1560px;
+  right: -88px;
+  opacity: 0.82;
+}
+
+@media (max-width: 380px) {
+  .floral-hero-transition {
+    width: min(380px, calc(100% - 12px));
+    height: 132px;
+    margin: -48px auto -36px;
+    opacity: 0.43;
+  }
+
+  .floral-details-border {
+    right: -30px;
+    width: 142px;
+    opacity: 0.28;
+  }
+
+  .floral-countdown-garland {
+    top: 78px;
+    width: 368px;
+    height: 224px;
+    opacity: 0.23;
+  }
+
+  .floral-side-rail {
+    top: 1580px;
+    right: -108px;
+  }
+}
+/* Hero watercolor flower placement */
+.floral-hero-watercolor {
+  position: absolute;
+  left: -34px;
+  bottom: -74px;
+  z-index: 3;
+  width: 230px;
+  height: 330px;
+  opacity: 0.34;
+  transform: rotate(-7deg);
+  background-size: contain;
+  background-position: bottom left;
+}
+
+@media (max-width: 380px) {
+  .floral-hero-watercolor {
+    left: -48px;
+    bottom: -70px;
+    width: 208px;
+    height: 302px;
+    opacity: 0.3;
+  }
+}
+/* Hero flower-only correction */
+.floral-hero-accent,
+.floral-hero-transition {
+  display: none;
+}
+
+.floral-hero-watercolor {
+  left: -48px;
+  bottom: -168px;
+  z-index: 1;
+  width: 310px;
+  height: 430px;
+  opacity: 0.5;
+  transform: rotate(-7deg);
+  background-size: contain;
+  background-position: bottom left;
+}
+
+@media (max-width: 380px) {
+  .floral-hero-watercolor {
+    left: -62px;
+    bottom: -158px;
+    width: 286px;
+    height: 398px;
+    opacity: 0.46;
+  }
+}
+/* Hero watercolor requested placement */
+.floral-hero-accent,
+.floral-hero-transition {
+  display: none;
+}
+
+.floral-hero-watercolor {
+  position: absolute;
+  left: -44px;
+  bottom: 26px;
+  width: 330px;
+  height: 330px;
+  opacity: 0.62;
+  z-index: 2;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  pointer-events: none;
+  transform: none;
+}
+
+@media (max-width: 380px) {
+  .floral-hero-watercolor {
+    left: -52px;
+    bottom: 24px;
+    width: 300px;
+    height: 300px;
+    opacity: 0.56;
+  }
+}
