@@ -2126,3 +2126,22 @@ body {
   transform: translateY(0) !important;
   filter: none !important;
 }
+/* FINAL CLIENT REQUEST: make Anar normal font but bigger */
+.hero-organizer-name {
+  position: relative !important;
+  z-index: 92 !important;
+
+  margin: 12px 0 0 !important;
+
+  font-family: var(--font-invite-serif), Georgia, "Times New Roman", serif !important;
+  font-size: clamp(44px, 11vw, 62px) !important;
+  line-height: 1.05 !important;
+  font-weight: 600 !important;
+
+  color: #111111 !important;
+  text-transform: none !important;
+  letter-spacing: 0.06em !important;
+
+  transform: translateY(0) !important;
+  filter: none !important;
+}
