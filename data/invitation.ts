@@ -65,7 +65,7 @@ export const invitation: Record<Language, InvitationContent> = {
     heroNames: "Diana",
     organizers: "Хозяин торжества",
     invitationText:
-      "Приглашаем Вас быть почетным гостем на торжественном проводе нашей дочери Дианы.",
+      "Приглашаем Вас быть почетным гостем на торжественном қыз ұзату нашей дочери Дианы.",
     guestArrival: "17:00",
     start: "18:00",
     date: "05.08.2026",
@@ -124,7 +124,7 @@ export const invitation: Record<Language, InvitationContent> = {
     heroNames: "Diana",
     organizers: "Той иесі",
     invitationText:
-      "Сіздерді қызымыз Диананың ұзату тойының қадірлі қонағы болуға шақырамыз.",
+      "Сіздерді қызымыз Диананың қыз ұзату тойының қадірлі қонағы болуға шақырамыз.",
     guestArrival: "17:00",
     start: "18:00",
     date: "05.08.2026",
