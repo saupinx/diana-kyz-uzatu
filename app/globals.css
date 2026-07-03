@@ -2107,3 +2107,22 @@ body {
 .floral-details-border {
   pointer-events: none !important;
 }
+/* FINAL CLIENT REQUEST: make Anar normal site text */
+.hero-organizer-name {
+  position: relative !important;
+  z-index: 92 !important;
+
+  margin: 12px 0 0 !important;
+
+  font-family: var(--font-invite-serif), Georgia, "Times New Roman", serif !important;
+  font-size: clamp(28px, 7vw, 38px) !important;
+  line-height: 1.15 !important;
+  font-weight: 600 !important;
+
+  color: #111111 !important;
+  text-transform: none !important;
+  letter-spacing: 0.08em !important;
+
+  transform: translateY(0) !important;
+  filter: none !important;
+}
